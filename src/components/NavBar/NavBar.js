@@ -1,11 +1,10 @@
 import React from 'react'
-import FilterByType from './../FilterByType'
 
-class NavBar extends React.Component{
-    render(){
-        return(
-            <FilterByType/>
-        )
-    }
+const NavBar = props => {
+    const { option } = props
+    return (
+        <li className="NavBarContainer__NavBar">
+            <a className={"NavBarContainer__NavBar__link"}>{option}</a>
+        </li>)
 }
 export default NavBar
