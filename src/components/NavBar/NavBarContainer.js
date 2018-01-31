@@ -9,7 +9,7 @@ class NavBarContainer extends React.Component {
     constructor() {
         super()
         this.state = {
-            open: true
+            open: false
         }
         this.showMenuItems = this.showMenuItems.bind(this)
         this.toggleClass = this.toggleClass.bind(this)
