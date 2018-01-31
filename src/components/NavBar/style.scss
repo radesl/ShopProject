@@ -1,0 +1,48 @@
+.NavBarContainer{
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    width: 30%;
+    background-color: rgba(35, 34, 34, 0.78);
+    color: #fff;
+    &__NavBar{
+        padding: 10px;
+        text-align: center;
+        background-color: rgba(83, 82, 82, 0.91);
+        border-top: 1px #fff dashed;
+        &:last-child{
+            border-bottom: 1px #fff dashed;
+        }
+        &__link{
+            display: block;
+        }
+        &:hover{
+            background-color: rgba(35, 34, 34, 0.78);
+        }
+    }
+}
+.NavBarContainer--closed{
+    display: none;
+}
+
+@media screen and (min-width: 480px){
+    .NavBarContainer {
+        width: 100%;
+        flex-direction: unset;
+        &__NavBar {
+            flex: 1 1 0;
+            padding: 15px;
+            font-size: 20px;
+            border: none;
+            &:last-child {
+                border: none;
+            }
+        }
+    }
+}
+@media screen and (min-width: 768px){
+    .NavBarContainer{
+        width: 80%;
+        margin: auto;
+    }
+}
