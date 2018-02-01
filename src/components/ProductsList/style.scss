@@ -1,0 +1,8 @@
+.ProductList{
+    display: flex;
+    max-width: 80%;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    justify-content: space-around;
+    flex-direction: row;
+}
