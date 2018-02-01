@@ -1,0 +1,39 @@
+.ProductItem {
+    background-color: red;
+    height: 120px;
+    min-width: 100px;
+    margin-top: 15px;
+    margin-bottom: 5px;
+}
+
+@media screen and (min-width: 500px) {
+    .ProductItem{
+        min-width: 130px;
+        height: 170px;
+        margin-top: 20px;
+    }
+}
+@media screen and (min-width: 650px) {
+    .ProductItem{
+        min-width: 150px;
+        height: 190px;
+    }
+}
+@media screen and (min-width: 768px) {
+    .ProductItem {
+        min-width: 150px;
+        height: 190px;
+    }
+}
+@media screen and (min-width: 900px) {
+    .ProductItem {
+        min-width: 150px;
+        height: 190px;
+    }
+}
+@media screen and (min-width: 1160px) {
+    .ProductItem {
+        min-width: 165px;
+        height: 200px;
+    }
+}

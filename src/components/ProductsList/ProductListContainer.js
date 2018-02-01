@@ -1,16 +1,35 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import * as DATA_REDUCER from './../../reducers/reducers'
+import ProductList from './ProductList'
+import ProductItem from './../ProductItem'
 
 class ProductListContainer extends React.PureComponent {
-    componentDidMount(){
+    constructor() {
+        super()
+        this.showProductList = this.showProductList.bind(this)
+    }
+    componentDidMount() {
         const url = './../../../API/listOfProduct.json'
-        const {fetchData}=this.props
+        const { fetchData } = this.props
         fetchData(url)
     }
-    render() {
-        return <div>product list</div>
+    showProductList() {
+        const { productList } = this.props
+        return productList && Object.keys(productList).map(product => {
+            return <ProductItem product={productList[product]} key={productList[product].id} />
+        })
     }
+    render() {
+        const showProductList = this.showProductList()
+        return (
+            <ProductList showProductList={showProductList} />
+        )
+    }
+}
+const mapStateToProps = state => {
+    const { productList, isRequesting } = state
+    return { productList, isRequesting }
 }
 const mapDispatchToProps = dispatch => {
     return {
@@ -42,4 +61,4 @@ const mapDispatchToProps = dispatch => {
         }
     }
 }
-export default connect(null, mapDispatchToProps)(ProductListContainer)
+export default connect(mapStateToProps, mapDispatchToProps)(ProductListContainer)
