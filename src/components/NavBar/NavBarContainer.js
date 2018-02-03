@@ -9,35 +9,46 @@ class NavBarContainer extends React.Component {
     constructor() {
         super()
         this.state = {
-            openMenu: false
+            openMenu: false,
+            openSubMenu: false
         }
-        this.toggleClass = this.toggleClass.bind(this)
+        this.toggleMenu = this.toggleMenu.bind(this)
+        this.toogleSubMenu = this.toogleSubMenu.bind(this)
     }
-    toggleClass() {
+    toggleMenu() {
         const { openMenu } = this.state
         let currentState = openMenu
         this.setState({
             openMenu: !currentState
         })
     }
+    toogleSubMenu() {
+        const { openSubMenu } = this.state
+        let currentState = openSubMenu
+        this.setState({
+            openSubMenu: !currentState
+        })
+    }
     render() {
-        const { openMenu } = this.state
+        const { openMenu, openSubMenu } = this.state
         return (
             <div>
-                <Burger toggle={this.toggleClass} openMenu={openMenu} />
+                <Burger toggle={this.toggleMenu} openMenu={openMenu} />
                 <ul className={openMenu ? 'NavBarContainer' : 'NavBarContainer--closed'}>
-                    <li className="NavBarContainer__NavBar types">
-                        <NavBar option={'types'} />
-                        <ul>
+                    <li className="NavBarContainer__NavBar">
+                        <NavBar toogle={this.toogleSubMenu} option={'types'} />
+                        <ul className={openSubMenu
+                            ? 'NavBarContainer__NavBar__submenu'
+                            : 'NavBarContainer--closed'}>
                             <SubMenuFilterButton option={'alcohol'} />
                             <SubMenuFilterButton option={'chemicals'} />
                             <SubMenuFilterButton option={'food'} />
                         </ul>
                     </li>
-                    <li className="NavBarContainer__NavBar prices">
+                    <li className="NavBarContainer__NavBar">
                         <NavBar option={'prices'} />
                     </li>
-                    <li className="NavBarContainer__NavBar sales">
+                    <li className="NavBarContainer__NavBar">
                         <NavBar option={'sales'} />
                     </li>
                 </ul>

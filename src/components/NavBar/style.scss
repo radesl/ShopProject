@@ -1,53 +1,25 @@
-.NavBarContainer{
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-    width: 30%;
-    background-color: rgba(35, 34, 34, 0.78);
-    color: #fff;
-    &__NavBar{
-        padding: 10px;
-        text-align: center;
-        background-color: rgba(83, 82, 82, 0.91);
-        border-top: 1px #fff dashed;
-        &:last-child{
-            border-bottom: 1px #fff dashed;
-        }
-        &__link{
-            display: block;
-        }
-        &:hover{
-            background-color: rgba(35, 34, 34, 0.78);
-        }
-    }
-}
-.NavBarContainer--closed{
-    display: none;
-}
-
-@media screen and (min-width: 480px){
-    .NavBarContainer {
-        width: 100%;
-        margin: 0 auto;
-        flex-direction: unset;
-        &__NavBar {
-            flex: 1 1 0;
-            padding: 15px;
-            font-size: 20px;
-            border: none;
-            &:last-child {
-                border: none;
+.NavBarContainer {
+    background-color: rgba(86, 84, 84, 0.93);
+    width: 40%;
+    position: absolute;
+    &__NavBar {
+        border-top: 1px dashed #dac9c9;
+            &__link{
+                text-decoration: none;
+                color: #dac9c9;
+                display: block;
+                padding: 5%;
+                padding-left: 10%;
+            }
+            &__link:hover {
+                background-color: rgba(185, 178, 193, 0.84);
+                color: black;
+            }
+            &__submenu {
+                list-style-type: none;
             }
         }
     }
-}
-@media screen and (min-width: 768px){
-    .NavBarContainer{
-        width: 95%;
-    }
-}
-@media screen and (min-width: 900px){
-    .NavBarContainer{
-        width: 80%;
-    }
+.NavBarContainer--closed {
+    display: none;
 }
