@@ -1,6 +1,6 @@
 import React from 'react'
 import NavBar from './../NavBar'
-import ProductsList from './../ProductsList'
+import ProductRoute from './../ProductRoute'
 import './style.scss'
 
 class AppContainer extends React.Component {
@@ -8,7 +8,7 @@ class AppContainer extends React.Component {
         return (
             <div className='App'>
                 <NavBar />
-                <ProductsList/>
+                <ProductRoute/>
             </div>
         )
     }

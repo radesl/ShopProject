@@ -22,7 +22,6 @@ class ProductListContainer extends React.Component {
         })
     }
     render() {
-        console.log(window.innerHeight)
         const showProductList = this.showProductList()
         return (
             <ProductList showProductList={showProductList} />

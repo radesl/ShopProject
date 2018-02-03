@@ -6,11 +6,11 @@ const ProductItem = props => {
         name,
         price,
         imageUrl
-        }} = props
+        } } = props
     return (
         <div className='ProductItem'>
             <img className='ProductItem__image' src='' />
-            <div className='ProductItem__name'></div>
+            <div className='ProductItem__name'>{name}</div>
             <div className='ProductItem__price' ></div>
         </div>
     )
