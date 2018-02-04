@@ -10,10 +10,14 @@ class NavBarContainer extends React.Component {
         super()
         this.state = {
             openMenu: false,
-            openSubMenu: false
+            openTypes: false,
+            openPrices: false,
+            openSales: false
         }
         this.toggleMenu = this.toggleMenu.bind(this)
-        this.toogleSubMenu = this.toogleSubMenu.bind(this)
+        this.toogleTypes = this.toogleTypes.bind(this)
+        this.tooglePrices = this.tooglePrices.bind(this)
+        this.toogleSales = this.toogleSales.bind(this)
     }
     toggleMenu() {
         const { openMenu } = this.state
@@ -22,22 +26,52 @@ class NavBarContainer extends React.Component {
             openMenu: !currentState
         })
     }
-    toogleSubMenu() {
-        const { openSubMenu } = this.state
-        let currentState = openSubMenu
+    toogleTypes() {
+        const { openTypes, openPrices, openSales} = this.state
         this.setState({
-            openSubMenu: !currentState
+            openTypes: !openTypes
         })
+        if(openTypes == (openPrices && openSales)){
+            this.setState({
+                openPrices: false,
+                openSales: false
+            })
+        }
+    }
+    tooglePrices() {
+        const { openTypes, openPrices, openSales } = this.state
+        this.setState({
+            openPrices: !openPrices
+        })
+        if(openPrices == (openTypes && openSales)){
+            this.setState({
+                openTypes: false,
+                openSales: false
+            })
+        }
+    }
+    toogleSales() {
+        const { openTypes, openPrices, openSales } = this.state
+        this.setState({
+            openSales: !openSales
+        })
+        if(openSales == (openTypes && openPrices)){
+            this.setState({
+                openTypes: false,
+                openPrices: false
+            })
+        }
     }
     render() {
-        const { openMenu, openSubMenu } = this.state
+        const { openMenu, openTypes, openPrices, openSales } = this.state
+        console.log('types', openTypes, 'prices', openPrices, 'sales', openSales)
         return (
             <div>
                 <Burger toggle={this.toggleMenu} openMenu={openMenu} />
                 <ul className={openMenu ? 'NavBarContainer' : 'NavBarContainer--closed'}>
                     <li className="NavBarContainer__NavBar">
-                        <NavBar toogle={this.toogleSubMenu} option={'types'} />
-                        <ul className={openSubMenu
+                        <NavBar toogle={this.toogleTypes} option={'types'} />
+                        <ul className={openTypes
                             ? 'NavBarContainer__NavBar__submenu'
                             : 'NavBarContainer--closed'}>
                             <SubMenuFilterButton option={'alcohol'} />
@@ -46,14 +80,27 @@ class NavBarContainer extends React.Component {
                         </ul>
                     </li>
                     <li className="NavBarContainer__NavBar">
-                        <NavBar option={'prices'} />
+                        <NavBar toogle={this.tooglePrices} option={'prices'} />
+                        <ul className={openPrices
+                            ? 'NavBarContainer__NavBar__submenu'
+                            : 'NavBarContainer--closed'}>
+                            <SubMenuFilterButton option={'alcohol'} />
+                            <SubMenuFilterButton option={'chemicals'} />
+                            <SubMenuFilterButton option={'food'} />
+                        </ul>
                     </li>
                     <li className="NavBarContainer__NavBar">
-                        <NavBar option={'sales'} />
+                        <NavBar toogle={this.toogleSales} option={'sales'} />
+                        <ul className={openSales
+                            ? 'NavBarContainer__NavBar__submenu'
+                            : 'NavBarContainer--closed'}>
+                            <SubMenuFilterButton option={'alcohol'} />
+                            <SubMenuFilterButton option={'chemicals'} />
+                            <SubMenuFilterButton option={'food'} />
+                        </ul>
                     </li>
                 </ul>
             </div >)
-
     }
 }
 

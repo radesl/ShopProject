@@ -2,6 +2,7 @@
     background-color: rgba(86, 84, 84, 0.93);
     width: 40%;
     position: absolute;
+    list-style-type: none;
     &__NavBar {
         border-top: 1px dashed #dac9c9;
             &__link{
@@ -22,4 +23,21 @@
     }
 .NavBarContainer--closed {
     display: none;
+    background: none;
+}
+@media screen and (min-width: 760px) {
+    .NavBarContainer {
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
+        background: none;
+        &__NavBar {
+            width: 33%;
+            text-align: center;
+            background-color: rgba(86, 84, 84, 0.93);
+            &__link {
+                font-size: 20px;
+            }
+        }
+    }
 }
