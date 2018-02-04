@@ -10,28 +10,40 @@ class NavBarContainer extends React.Component {
         super()
         this.state = {
             openMenu: false,
+            mobileMenu: true,
             openTypes: false,
             openPrices: false,
-            openSales: false
+            openSales: false,
+            width: window.innerWidth
         }
         this.toggleMenu = this.toggleMenu.bind(this)
         this.toogleTypes = this.toogleTypes.bind(this)
         this.tooglePrices = this.tooglePrices.bind(this)
         this.toogleSales = this.toogleSales.bind(this)
+        this.checkWidth = this.checkWidth.bind(this)
+        this.updateDimensions = this.updateDimensions.bind(this)
+    }
+    componentDidMount() {
+        const {width}=this.state
+        window.addEventListener('resize', this.updateDimensions)
+    }
+    updateDimensions(){
+        this.setState({
+            width: window.innerWidth
+        })
     }
     toggleMenu() {
         const { openMenu } = this.state
-        let currentState = openMenu
         this.setState({
-            openMenu: !currentState
+            openMenu: !openMenu
         })
     }
     toogleTypes() {
-        const { openTypes, openPrices, openSales} = this.state
+        const { openTypes, openPrices, openSales } = this.state
         this.setState({
             openTypes: !openTypes
         })
-        if(openTypes == (openPrices && openSales)){
+        if (openTypes == (openPrices && openSales)) {
             this.setState({
                 openPrices: false,
                 openSales: false
@@ -43,7 +55,7 @@ class NavBarContainer extends React.Component {
         this.setState({
             openPrices: !openPrices
         })
-        if(openPrices == (openTypes && openSales)){
+        if (openPrices == (openTypes && openSales)) {
             this.setState({
                 openTypes: false,
                 openSales: false
@@ -55,19 +67,29 @@ class NavBarContainer extends React.Component {
         this.setState({
             openSales: !openSales
         })
-        if(openSales == (openTypes && openPrices)){
+        if (openSales == (openTypes && openPrices)) {
             this.setState({
                 openTypes: false,
                 openPrices: false
             })
         }
     }
+    checkWidth() {
+        const { mobileMenu, openMenu, width } = this.state
+        if (width >= 760) {
+            this.setState({
+                mobileMenu: false,
+                openMenu: false
+            })
+        }
+    }
     render() {
-        const { openMenu, openTypes, openPrices, openSales } = this.state
-        console.log('types', openTypes, 'prices', openPrices, 'sales', openSales)
+        const { openMenu, openTypes, openPrices, openSales, mobileMenu, width } = this.state
+        console.log(width)
         return (
             <div>
-                <Burger toggle={this.toggleMenu} openMenu={openMenu} />
+                <Burger toggle={this.toggleMenu} checkWidth={this.checkWidth}
+                    mobileMenu={mobileMenu} width={width} openMenu={openMenu}/>
                 <ul className={openMenu ? 'NavBarContainer' : 'NavBarContainer--closed'}>
                     <li className="NavBarContainer__NavBar">
                         <NavBar toogle={this.toogleTypes} option={'types'} />

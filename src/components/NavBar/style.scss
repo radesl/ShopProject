@@ -34,6 +34,8 @@
         &__NavBar {
             width: 33%;
             text-align: center;
+            flex-grow: 1;
+            border-top: none;
             &__link {
                 background-color: rgba(86, 84, 84, 0.93);
                 font-size: 20px;
