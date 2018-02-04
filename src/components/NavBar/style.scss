@@ -34,8 +34,12 @@
         &__NavBar {
             width: 33%;
             text-align: center;
-            background-color: rgba(86, 84, 84, 0.93);
             &__link {
+                background-color: rgba(86, 84, 84, 0.93);
+                font-size: 20px;
+            }
+            &__submenu{
+                background-color: rgba(86, 84, 84, 0.93);
                 font-size: 20px;
             }
         }
