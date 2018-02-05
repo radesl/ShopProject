@@ -5,7 +5,12 @@
     margin-top: 15px;
     margin-bottom: 5px;
 }
-
+@media screen and (min-width: 200px){
+    .ProductItem{
+        min-width: 75px;
+        height: 90px;
+    }
+}
 @media screen and (min-width: 500px) {
     .ProductItem{
         min-width: 130px;

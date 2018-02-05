@@ -1,84 +1,126 @@
 import React from 'react'
-import { connect } from 'react-redux'
 import * as DATA_REDUCERS from './../../reducers/reducers'
 import NavBar from './NavBar'
 import './style.scss'
 import Burger from './../Burger'
+import SubMenuFilterButton from './../SubMenuFilterButton'
 
 class NavBarContainer extends React.Component {
     constructor() {
         super()
         this.state = {
-            open: false
+            openMenu: false,
+            isMobile: true,
+            openTypes: false,
+            openPrices: false,
+            openSales: false,
+            width: window.innerWidth
         }
-        this.showMenuItems = this.showMenuItems.bind(this)
-        this.toggleClass = this.toggleClass.bind(this)
+        this.toggleMenu = this.toggleMenu.bind(this)
+        this.toogleTypes = this.toogleTypes.bind(this)
+        this.tooglePrices = this.tooglePrices.bind(this)
+        this.toogleSales = this.toogleSales.bind(this)
+        this.checkWidth = this.checkWidth.bind(this)
     }
     componentDidMount() {
-        const url = './../../../API/listOfMenuOptions.json'
-        const { fetchData } = this.props
-        fetchData(url)
+        const { width } = this.state
+        window.addEventListener('resize', this.checkWidth)
     }
-    toggleClass() {
-        const { open } = this.state
-        let currentState = open
+    toggleMenu() {
+        const { openMenu } = this.state
         this.setState({
-            open: !currentState
+            openMenu: !openMenu
         })
     }
-    showMenuItems() {
-        const { listOfProductTypes } = this.props
-        let types = null
-        listOfProductTypes && (types = Object.keys(listOfProductTypes))
-        return types && types.map(element => {
-            return <NavBar option={element} key={element} />
+    toogleTypes() {
+        const { openTypes, openPrices, openSales } = this.state
+        this.setState({
+            openTypes: !openTypes
+        })
+        if (openTypes == (openPrices && openSales)) {
+            this.setState({
+                openPrices: false,
+                openSales: false
+            })
+        }
+    }
+    tooglePrices() {
+        const { openTypes, openPrices, openSales } = this.state
+        this.setState({
+            openPrices: !openPrices
+        })
+        if (openPrices == (openTypes && openSales)) {
+            this.setState({
+                openTypes: false,
+                openSales: false
+            })
+        }
+    }
+    toogleSales() {
+        const { openTypes, openPrices, openSales } = this.state
+        this.setState({
+            openSales: !openSales
+        })
+        if (openSales == (openTypes && openPrices)) {
+            this.setState({
+                openTypes: false,
+                openPrices: false
+            })
+        }
+    }
+    checkWidth() {
+        const { isMobile, openMenu } = this.state
+        if (window.innerWidth >= 760) {
+            return this.setState({
+                isMobile: false,
+                openMenu: true
+            })
+        }
+        this.setState({
+            isMobile: true,
+            openMenu: false
         })
     }
     render() {
-        const showMenuItems = this.showMenuItems()
-        const { open } = this.state
+        const { openMenu, openTypes, openPrices, openSales, isMobile } = this.state
         return (
             <div>
-                <Burger toggle={this.toggleClass} open={open} />
-                <ul className={open ? 'NavBarContainer' : 'NavBarContainer--closed'}>
-                    {showMenuItems}
+                <Burger toggle={this.toggleMenu} checkWidth={this.checkWidth}
+                    isMobile={isMobile} openMenu={openMenu} />
+                <ul className={openMenu ? 'NavBarContainer' : 'NavBarContainer--closed'}>
+                    <li className="NavBarContainer__NavBar">
+                        <NavBar toogle={this.toogleTypes} option={'types'} />
+                        <ul className={openTypes
+                            ? 'NavBarContainer__NavBar__submenu'
+                            : 'NavBarContainer--closed'}>
+                            <SubMenuFilterButton option={'alcohol'} />
+                            <SubMenuFilterButton option={'chemicals'} />
+                            <SubMenuFilterButton option={'food'} />
+                        </ul>
+                    </li>
+                    <li className="NavBarContainer__NavBar">
+                        <NavBar toogle={this.tooglePrices} option={'prices'} />
+                        <ul className={openPrices
+                            ? 'NavBarContainer__NavBar__submenu'
+                            : 'NavBarContainer--closed'}>
+                            <SubMenuFilterButton option={'alcohol'} />
+                            <SubMenuFilterButton option={'chemicals'} />
+                            <SubMenuFilterButton option={'food'} />
+                        </ul>
+                    </li>
+                    <li className="NavBarContainer__NavBar">
+                        <NavBar toogle={this.toogleSales} option={'sales'} />
+                        <ul className={openSales
+                            ? 'NavBarContainer__NavBar__submenu'
+                            : 'NavBarContainer--closed'}>
+                            <SubMenuFilterButton option={'alcohol'} />
+                            <SubMenuFilterButton option={'chemicals'} />
+                            <SubMenuFilterButton option={'food'} />
+                        </ul>
+                    </li>
                 </ul>
-            </div>)
+            </div >)
+    }
+}
 
-    }
-}
-const mapStateToProps = state => {
-    const { listOfProductTypes, isRequesting } = state
-    return { listOfProductTypes, isRequesting }
-}
-const mapDispatchToProps = dispatch => {
-    return {
-        fetchData: url => {
-            dispatch({ type: DATA_REDUCERS.FETCH_LIST_OF_TYPES_START })
-            const fetchListOfTypes = new Promise((resolve, reject) => {
-                const xhr = new XMLHttpRequest()
-                xhr.onreadystatechange = () => {
-                    if (xhr.readyState == 4 && (xhr.status >= 200 || xhr.status < 300)) {
-                        const listOfProductTypes = JSON.parse(xhr.responseText)
-                        resolve(listOfProductTypes)
-                    }
-                }
-                xhr.open('GET', `${url}`, true)
-                xhr.send()
-            })
-                .then(listOfProductTypes => {
-                    dispatch({
-                        type: DATA_REDUCERS.FETCH_LIST_OF_TYPES_SUCESS,
-                        listOfProductTypes
-                    })
-                })
-                .catch(error => {
-                    dispatch({
-                        type: DATA_REDUCERS.FETCH_LIST_OF_TYPES_FALURE,
-                        error
-                    })
-                })
-        }
-    }
-}
-export default connect(mapStateToProps, mapDispatchToProps)(NavBarContainer)
+export default NavBarContainer

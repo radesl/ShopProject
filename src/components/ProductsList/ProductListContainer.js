@@ -4,12 +4,13 @@ import * as DATA_REDUCER from './../../reducers/reducers'
 import ProductList from './ProductList'
 import ProductItem from './../ProductItem'
 
-class ProductListContainer extends React.PureComponent {
+class ProductListContainer extends React.Component {
     constructor() {
         super()
         this.showProductList = this.showProductList.bind(this)
     }
     componentDidMount() {
+        window.addEventListener('scroll', this.onScroll, false)
         const url = './../../../API/listOfProduct.json'
         const { fetchData } = this.props
         fetchData(url)

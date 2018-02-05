@@ -1,53 +1,66 @@
-.NavBarContainer{
-    display: flex;
-    flex-direction: column;
+.NavBarContainer {
+    background-color: rgba(86, 84, 84, 0.93);
+    width: 40%;
+    position: absolute;
     list-style-type: none;
-    width: 30%;
-    background-color: rgba(35, 34, 34, 0.78);
-    color: #fff;
-    &__NavBar{
-        padding: 10px;
-        text-align: center;
-        background-color: rgba(83, 82, 82, 0.91);
-        border-top: 1px #fff dashed;
-        &:last-child{
-            border-bottom: 1px #fff dashed;
-        }
-        &__link{
-            display: block;
-        }
-        &:hover{
-            background-color: rgba(35, 34, 34, 0.78);
+    &__NavBar {
+        border-top: 1px dashed #dac9c9;
+            &__link{
+                text-decoration: none;
+                color: #dac9c9;
+                display: block;
+                padding: 5%;
+                padding-left: 10%;
+            }
+            &__link:hover {
+                background-color: rgba(185, 178, 193, 0.84);
+                color: black;
+            }
+            &__submenu {
+                list-style-type: none;
+            }
         }
     }
-}
-.NavBarContainer--closed{
+.NavBarContainer--closed {
     display: none;
+    background: none;
 }
-
-@media screen and (min-width: 480px){
+@media screen and (min-width: 760px) {
     .NavBarContainer {
+        display: flex;
         width: 100%;
-        margin: 0 auto;
-        flex-direction: unset;
+        justify-content: space-around;
+        background: none;
         &__NavBar {
-            flex: 1 1 0;
-            padding: 15px;
-            font-size: 20px;
-            border: none;
-            &:last-child {
-                border: none;
+            width: 33%;
+            text-align: center;
+            flex-grow: 1;
+            border-top: none;
+            &__link {
+                background-color: rgba(86, 84, 84, 0.93);
+                font-size: 20px;
+            }
+            &__submenu{
+                background-color: rgba(86, 84, 84, 0.93);
+                font-size: 20px;
             }
         }
     }
 }
-@media screen and (min-width: 768px){
-    .NavBarContainer{
-        width: 95%;
+@media screen and (min-width: 960px) {
+    .NavBarContainer {
+        justify-content: center;
+        &__NavBar {
+            width: 30%;
+            flex-grow: 0;
+        }
     }
-}
-@media screen and (min-width: 900px){
-    .NavBarContainer{
-        width: 80%;
+    .NavBarContainer:first-child {
+        a{
+            border-radius: 2% 0 0 2%;
+        }
+    }
+    .NavBarContainer:last-child {
+        border-radius: 0 2% 2% 0;
     }
 }

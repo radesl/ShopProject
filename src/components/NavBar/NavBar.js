@@ -1,10 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const NavBar = props => {
-    const { option } = props
+    const { option, toogle } = props
     return (
-        <li className="NavBarContainer__NavBar">
-            <a className={"NavBarContainer__NavBar__link"}>{option}</a>
-        </li>)
+        <Link onClick={toogle} to='/' className={"NavBarContainer__NavBar__link"}>{option}</Link>)
 }
 export default NavBar

@@ -1,12 +1,12 @@
 import React from 'react'
-//import burgerImage from './../../resources/icons/burger.png'
 import './style.scss'
 
-const Burger = (props) => {
-    const {toggle, open}=props
-    console.log(open)
+const Burger = props => {
+    const { toggle, isMobile } = props
     return (
-        <a onClick={toggle} className='Burger'></a>
+        <a onClick={toggle} 
+            className={isMobile ? 'Burger' : 'Burger--disabled'}></a>
     )
 }
+
 export default Burger
