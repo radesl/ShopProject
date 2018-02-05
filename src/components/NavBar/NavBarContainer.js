@@ -10,7 +10,7 @@ class NavBarContainer extends React.Component {
         super()
         this.state = {
             openMenu: false,
-            mobileMenu: true,
+            isMobile: true,
             openTypes: false,
             openPrices: false,
             openSales: false,
@@ -21,16 +21,10 @@ class NavBarContainer extends React.Component {
         this.tooglePrices = this.tooglePrices.bind(this)
         this.toogleSales = this.toogleSales.bind(this)
         this.checkWidth = this.checkWidth.bind(this)
-        this.updateDimensions = this.updateDimensions.bind(this)
     }
     componentDidMount() {
-        const {width}=this.state
-        window.addEventListener('resize', this.updateDimensions)
-    }
-    updateDimensions(){
-        this.setState({
-            width: window.innerWidth
-        })
+        const { width } = this.state
+        window.addEventListener('resize', this.checkWidth)
     }
     toggleMenu() {
         const { openMenu } = this.state
@@ -75,21 +69,24 @@ class NavBarContainer extends React.Component {
         }
     }
     checkWidth() {
-        const { mobileMenu, openMenu, width } = this.state
-        if (width >= 760) {
-            this.setState({
-                mobileMenu: false,
-                openMenu: false
+        const { isMobile, openMenu } = this.state
+        if (window.innerWidth >= 760) {
+            return this.setState({
+                isMobile: false,
+                openMenu: true
             })
         }
+        this.setState({
+            isMobile: true,
+            openMenu: false
+        })
     }
     render() {
-        const { openMenu, openTypes, openPrices, openSales, mobileMenu, width } = this.state
-        console.log(width)
+        const { openMenu, openTypes, openPrices, openSales, isMobile } = this.state
         return (
             <div>
                 <Burger toggle={this.toggleMenu} checkWidth={this.checkWidth}
-                    mobileMenu={mobileMenu} width={width} openMenu={openMenu}/>
+                    isMobile={isMobile} openMenu={openMenu} />
                 <ul className={openMenu ? 'NavBarContainer' : 'NavBarContainer--closed'}>
                     <li className="NavBarContainer__NavBar">
                         <NavBar toogle={this.toogleTypes} option={'types'} />

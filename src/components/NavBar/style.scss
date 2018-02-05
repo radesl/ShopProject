@@ -47,3 +47,20 @@
         }
     }
 }
+@media screen and (min-width: 960px) {
+    .NavBarContainer {
+        justify-content: center;
+        &__NavBar {
+            width: 30%;
+            flex-grow: 0;
+        }
+    }
+    .NavBarContainer:first-child {
+        a{
+            border-radius: 2% 0 0 2%;
+        }
+    }
+    .NavBarContainer:last-child {
+        border-radius: 0 2% 2% 0;
+    }
+}

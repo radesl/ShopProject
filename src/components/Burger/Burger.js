@@ -2,10 +2,10 @@ import React from 'react'
 import './style.scss'
 
 const Burger = props => {
-    const { toggle, checkWidth, mobileMenu, width } = props
+    const { toggle, isMobile } = props
     return (
-        <a onClick={toggle} onresize={checkWidth}
-            className={mobileMenu ? 'Burger' : 'Burger--disabled'}></a>
+        <a onClick={toggle} 
+            className={isMobile ? 'Burger' : 'Burger--disabled'}></a>
     )
 }
 
