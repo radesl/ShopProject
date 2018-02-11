@@ -1,11 +1,11 @@
-.ProductList{
+.OneTypeProductList{
     margin: 0 auto;
     max-width: 1200px;
     padding: 0 2%;
     min-height: 650px;
 }
 @media screen and (min-width: 600px){
-    .ProductList{
+    .OneTypeProductList{
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
@@ -13,12 +13,12 @@
     }
 }
 @media screen and (min-width: 760px){
-    .ProductList{
+    .OneTypeProductList{
         padding-top: 60px;
     }
 }
 @media screen and (min-width: 1200px){
-    .ProductList{
+    .OneTypeProductList{
         padding-top: 90px;
     }
 }

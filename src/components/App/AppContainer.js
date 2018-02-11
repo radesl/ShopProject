@@ -1,6 +1,7 @@
 import React from 'react'
 import NavBar from './../NavBar'
 import ProductRoute from './../ProductRoute'
+import Footer from './../Footer'
 import './style.scss'
 
 class AppContainer extends React.Component {
@@ -9,6 +10,7 @@ class AppContainer extends React.Component {
             <div className='App'>
                 <NavBar />
                 <ProductRoute/>
+                <Footer/>
             </div>
         )
     }

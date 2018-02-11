@@ -9,9 +9,11 @@ const ProductItem = props => {
         } } = props
     return (
         <div className='ProductItem'>
-            <img className='ProductItem__image' src='' />
-            <div className='ProductItem__name'>{name}</div>
-            <div className='ProductItem__price' ></div>
+            <img className='ProductItem__image' src={`${imageUrl}`} />
+            <div className='ProductItem__description'>
+                <div className='ProductItem__description__name'>{name}</div>
+                <div className='ProductItem__description__price' >{price}</div>
+            </div>
         </div>
     )
 }

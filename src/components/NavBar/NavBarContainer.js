@@ -13,8 +13,7 @@ class NavBarContainer extends React.Component {
             isMobile: true,
             openTypes: false,
             openPrices: false,
-            openSales: false,
-            width: window.innerWidth
+            openSales: false
         }
         this.toggleMenu = this.toggleMenu.bind(this)
         this.toogleTypes = this.toogleTypes.bind(this)
@@ -23,7 +22,6 @@ class NavBarContainer extends React.Component {
         this.checkWidth = this.checkWidth.bind(this)
     }
     componentDidMount() {
-        const { width } = this.state
         window.addEventListener('resize', this.checkWidth)
     }
     toggleMenu() {
