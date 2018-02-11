@@ -1,44 +1,75 @@
-.ProductItem {
-    background-color: red;
-    height: 120px;
-    min-width: 100px;
-    margin-top: 15px;
-    margin-bottom: 5px;
+// .ProductItem {
+//     background-color: red;
+//     height: 120px;
+//     min-width: 100px;
+//     margin-top: 15px;
+//     margin-bottom: 5px;
+// }
+// @media screen and (min-width: 200px){
+//     .ProductItem{
+//         min-width: 75px;
+//         height: 90px;
+//     }
+// }
+// @media screen and (min-width: 500px) {
+//     .ProductItem{
+//         min-width: 130px;
+//         height: 170px;
+//         margin-top: 20px;
+//     }
+// }
+// @media screen and (min-width: 650px) {
+//     .ProductItem{
+//         min-width: 150px;
+//         height: 190px;
+//     }
+// }
+// @media screen and (min-width: 768px) {
+//     .ProductItem {
+//         min-width: 150px;
+//         height: 190px;
+//     }
+// }
+// @media screen and (min-width: 900px) {
+//     .ProductItem {
+//         min-width: 150px;
+//         height: 190px;
+//     }
+// }
+// @media screen and (min-width: 1160px) {
+//     .ProductItem {
+//         min-width: 165px;
+//         height: 200px;
+//     }
+// }
+.ProductItem{
+    width: 100%;
+    &__image{
+        display: block;
+        width: 100%;
+    }
+    &__description{
+        display: flex;
+        justify-content: space-evenly;
+        &__name{
+            color: #e8dada;
+            font-size: 20px;
+        }
+        &__price{
+            color: #e8dada;
+            font-size: 20px;
+        }
+    }
 }
-@media screen and (min-width: 200px){
+@media screen and (min-width: 600px){
     .ProductItem{
-        min-width: 75px;
-        height: 90px;
+        width: 48%;
+        margin: 0 1%;
     }
 }
-@media screen and (min-width: 500px) {
+@media screen and (min-width: 1000px){
     .ProductItem{
-        min-width: 130px;
-        height: 170px;
-        margin-top: 20px;
-    }
-}
-@media screen and (min-width: 650px) {
-    .ProductItem{
-        min-width: 150px;
-        height: 190px;
-    }
-}
-@media screen and (min-width: 768px) {
-    .ProductItem {
-        min-width: 150px;
-        height: 190px;
-    }
-}
-@media screen and (min-width: 900px) {
-    .ProductItem {
-        min-width: 150px;
-        height: 190px;
-    }
-}
-@media screen and (min-width: 1160px) {
-    .ProductItem {
-        min-width: 165px;
-        height: 200px;
+        width: 30%;
+        margin: 0 1.5%;
     }
 }

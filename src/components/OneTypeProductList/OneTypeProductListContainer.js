@@ -27,8 +27,9 @@ class OneTypeProductListContainer extends React.Component {
     render() {
         const showFilterProductList = this.showFilterProductList()
         return (
-            <OneTypeProductList showFilterProductList={showFilterProductList} />
-        )
+            <div>
+                <OneTypeProductList showFilterProductList={showFilterProductList} />
+            </div>)
     }
 }
 const mapStateToProps = state => {

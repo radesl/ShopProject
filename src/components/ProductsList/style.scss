@@ -1,13 +1,23 @@
 .ProductList{
-    display: flex;
-    max-width: 80%;
-    flex-wrap: wrap;
     margin: 0 auto;
-    justify-content: space-around;
-    flex-direction: row;
+    max-width: 1200px;
+    padding: 0 2%;
 }
-@media screen and (max-width: 200px){
+@media screen and (min-width: 600px){
     .ProductList{
-        max-width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        padding-top: 10px;
+    }
+}
+@media screen and (min-width: 760px){
+    .ProductList{
+        padding-top: 60px;
+    }
+}
+@media screen and (min-width: 1200px){
+    .ProductList{
+        padding-top: 90px;
     }
 }

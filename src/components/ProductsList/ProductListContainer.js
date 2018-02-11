@@ -8,9 +8,9 @@ class ProductListContainer extends React.Component {
     constructor() {
         super()
         this.showProductList = this.showProductList.bind(this)
+        this.handleScroll = this.handleScroll.bind(this)
     }
     componentDidMount() {
-        window.addEventListener('scroll', this.onScroll, false)
         const url = './../../../API/listOfProduct.json'
         const { fetchData } = this.props
         fetchData(url)
@@ -18,13 +18,25 @@ class ProductListContainer extends React.Component {
     showProductList() {
         const { productList } = this.props
         return productList && Object.keys(productList).map(product => {
+            if(product >= Number(6)){
+                return;
+            }
             return <ProductItem product={productList[product]} key={productList[product].id} />
         })
     }
+    handleScroll() {
+        
+    }
     render() {
+        const { isRequesting } = this.props
         const showProductList = this.showProductList()
-        return (
-            <ProductList showProductList={showProductList} />
+        return (isRequesting
+            ? <span>...loading</span>
+            : <div onClick={this.handleScroll}
+                ref='elementList'
+                className='ProductListContainer'>
+                <ProductList showProductList={showProductList} />
+            </div>
         )
     }
 }
