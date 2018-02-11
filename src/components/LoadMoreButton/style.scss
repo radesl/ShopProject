@@ -1,0 +1,14 @@
+.LoadMoreButton{
+    display: flex;
+    margin: 10px auto;
+    padding: 5px 40px;
+    font-size: 20px;
+    border: none;
+    border-radius: 4%;
+    background: none;
+    background-color: rgba(42, 42, 45, 0.88);
+    color: #e8dada;
+}
+.LoadMoreButton:hover{
+    background-color: rgba(57, 57, 62, 0.88);
+}

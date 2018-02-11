@@ -3,12 +3,16 @@ import { connect } from 'react-redux'
 import * as DATA_REDUCER from './../../reducers/reducers'
 import ProductList from './ProductList'
 import ProductItem from './../ProductItem'
+import LoadMoreButton from './../LoadMoreButton'
 
 class ProductListContainer extends React.Component {
     constructor() {
         super()
+        this.state = {
+            numberOfCurrentLoadedItems: 6
+        }
         this.showProductList = this.showProductList.bind(this)
-        this.handleScroll = this.handleScroll.bind(this)
+        this.loadMoreProduct = this.loadMoreProduct.bind(this)
     }
     componentDidMount() {
         const url = './../../../API/listOfProduct.json'
@@ -17,25 +21,38 @@ class ProductListContainer extends React.Component {
     }
     showProductList() {
         const { productList } = this.props
-        return productList && Object.keys(productList).map(product => {
-            if(product >= Number(6)){
-                return;
-            }
+        const { numberOfCurrentLoadedItems } = this.state
+        const loadedItems = numberOfCurrentLoadedItems
+        if (!productList) {
+            return
+        }
+        const startingProduct = Object.keys(productList).filter(product => {
+            return Number(product) < loadedItems
+        })
+        return startingProduct.map(product => {
             return <ProductItem product={productList[product]} key={productList[product].id} />
         })
     }
-    handleScroll() {
-        
+    loadMoreProduct() {
+        const { productList } = this.props
+        const endList = Object.keys(productList).length
+        const { numberOfCurrentLoadedItems } = this.state
+        if (numberOfCurrentLoadedItems >= endList) {
+            return
+        }
+        this.setState({
+            numberOfCurrentLoadedItems: numberOfCurrentLoadedItems + 6
+        })
     }
     render() {
         const { isRequesting } = this.props
         const showProductList = this.showProductList()
+        //const loadMoreProduct = this.loadMoreProduct
         return (isRequesting
             ? <span>...loading</span>
-            : <div onClick={this.handleScroll}
-                ref='elementList'
-                className='ProductListContainer'>
+            : <div className='ProductListContainer'>
                 <ProductList showProductList={showProductList} />
+                <LoadMoreButton loadMore={this.loadMoreProduct}/>
             </div>
         )
     }
